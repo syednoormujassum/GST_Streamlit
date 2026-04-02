@@ -1,6 +1,3 @@
-[server]
-port=8080
-
 [theme]
 base="light"
 textColor="Brown"
