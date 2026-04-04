@@ -8,7 +8,7 @@
 
 # GST ChatBot 🤖
 
-A Retrieval-Augmented Generation (RAG) powered chatbot for Goods and Services Tax (GST) queries, built with Streamlit and modern AI technologies.
+A Retrieval-Augmented Generation (RAG) powered chatbot for Goods and Services Tax (GST) queries, built with FastAPI and modern AI technologies.
 
 ## 📋 Overview
 
@@ -20,7 +20,7 @@ This application allows users to ask questions about GST (Goods and Services Tax
 - **Intelligent Chunking**: Smart text splitting with overlap for better context retention
 - **Vector Embeddings**: Sentence transformer-based embeddings for semantic search
 - **RAG Pipeline**: Retrieval-Augmented Generation for accurate, context-aware responses
-- **Web Interface**: Clean Streamlit UI for easy interaction
+- **Web Interface**: FastAPI + responsive HTML UI for easy interaction
 - **Source Attribution**: Shows document sources and confidence scores for transparency
 
 ## 🏗️ Architecture
@@ -32,10 +32,10 @@ PDF Documents → Text Extraction → Chunking → Embeddings → Vector Store �
 ### Core Components
 
 1. **Data Loader** (`src/data_loader.py`): Loads and processes PDF documents
-2. **Chunking Manager** (`src/chunking.py`): Splits documents into manageable chunks with embeddings
+2. **Chunking Manager** (`src/chunking_new.py`): Splits documents into manageable chunks with embeddings
 3. **Vector Store** (`src/vectorstore.py`): Manages ChromaDB for vector storage and retrieval
 4. **RAG Retriever** (`src/search_retreiver.py`): Handles query processing and response generation
-5. **Streamlit App** (`streamlit.py`): Web interface for user interaction
+5. **FastAPI UI** (`app.py`): Web interface for user interaction
 
 ## 🚀 Quick Start
 
@@ -75,8 +75,8 @@ PDF Documents → Text Extraction → Chunking → Embeddings → Vector Store �
    # Process documents and create vector store
    python main.py
 
-   # Launch Streamlit app
-   streamlit run streamlit.py
+   # Launch the FastAPI app
+   uvicorn app:app --reload
    ```
 
 ## 📁 Project Structure
@@ -93,7 +93,7 @@ streamlit-gst/
 │   └── search_retreiver.py      # RAG retrieval logic
 ├── .env                          # Environment variables
 ├── main.py                       # Document processing pipeline
-├── streamlit.py                  # Web application
+├── app.py                        # FastAPI UI backend
 ├── requirements.txt              # Python dependencies
 ├── pyproject.toml               # Project configuration
 └── README.md                    # This file
@@ -140,7 +140,7 @@ Each response includes:
 
 ### Customizing Chunking
 
-Modify parameters in `src/chunking.py`:
+Modify parameters in `src/chunking_new.py`:
 ```python
 chunking_size=1000,    # Characters per chunk
 chunk_overlap=200      # Overlap between chunks
@@ -163,7 +163,7 @@ model='gpt-4-turbo'           # OpenAI models
 - **ChromaDB**: Vector database for embeddings
 - **Sentence Transformers**: Embedding generation
 - **PyMuPDF**: PDF text extraction
-- **Streamlit**: Web application framework
+- **FastAPI**: Web application framework
 - **Groq**: Fast LLM inference API
 
 ### Performance

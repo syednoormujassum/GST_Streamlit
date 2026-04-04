@@ -32,6 +32,18 @@ def pdf_loader(pdfs_path="data"):
     
     print(f"\n Total documents loaded = {len(all_docs)}")
     return all_docs
-    
 
 
+def list_pdf_files(pdfs_path="data"):
+    pdf_dir = Path(pdfs_path)
+    pdf_files = sorted(pdf_dir.glob("**/*.pdf"))
+    file_info = []
+
+    for pdf_file in pdf_files:
+        file_info.append({
+            "path": str(pdf_file.relative_to(pdf_dir)),
+            "mtime": pdf_file.stat().st_mtime,
+            "size": pdf_file.stat().st_size,
+        })
+
+    return file_info
